@@ -1,0 +1,115 @@
+TASK A
+   sno           sname                semail
+0    1        John Doe    john.doe@email.com
+1    2      Jane Smith  jane.smith@email.com
+2    3     Bob Johnson    bob.john@email.com
+3    4  Alice Williams  alice.will@email.com
+4    5      liam Brown  liam.brown@email.com
+INSERT 0 1
+   sno           sname                semail
+0    1        John Doe    john.doe@email.com
+1    2      Jane Smith  jane.smith@email.com
+2    3     Bob Johnson    bob.john@email.com
+3    4  Alice Williams  alice.will@email.com
+4    5      liam Brown  liam.brown@email.com
+5    6     Mike Silver    mike.sil@email.com
+TASK B
+  ecode         edesc          elocation       edate     etime  emax
+0  E001       Concert            Arena A  2024-07-15  10:00:00   500
+1  E002    Conference  Conference Center  2024-07-20  09:30:00   300
+2  E003  Sports Event            Arena A  2024-07-15  15:00:00   800
+3  E004      Festival         Park Plaza  2024-07-25  12:00:00  1000
+4  E005    Exhibition            Arena A  2024-07-05  11:00:00   200
+INSERT 0 1
+  ecode         edesc          elocation       edate     etime  emax
+0  E001       Concert            Arena A  2024-07-15  10:00:00   500
+1  E002    Conference  Conference Center  2024-07-20  09:30:00   300
+2  E003  Sports Event            Arena A  2024-07-15  15:00:00   800
+3  E004      Festival         Park Plaza  2024-07-25  12:00:00  1000
+4  E005    Exhibition            Arena A  2024-07-05  11:00:00   200
+5  R100     100M race        Sports Park  2024-07-15  10:00:00   700
+TASK C
+   tno ecode  sno     sname
+0  101  E001    1  John Doe
+1  106  E002    1  John Doe
+Spectator has tickets and cannot be deleted.
+CONTEXT:  PL/pgSQL function check_spectator_tickets() line 8 at RAISE
+
+Empty DataFrame
+Columns: [tno, ecode, sno, sname]
+Index: []
+DELETE 1
+   sno           sname                semail
+0    1        John Doe    john.doe@email.com
+1    2      Jane Smith  jane.smith@email.com
+2    3     Bob Johnson    bob.john@email.com
+3    4  Alice Williams  alice.will@email.com
+4    5      liam Brown  liam.brown@email.com
+TASK D
+   tno ecode  sno    edesc
+0  101  E001    1  Concert
+1  107  E001    3  Concert
+2  110  E001    2  Concert
+Cannot delete event with associated tickets
+CONTEXT:  PL/pgSQL function before_delete_event() line 5 at RAISE
+
+Empty DataFrame
+Columns: [tno, ecode, sno, edesc]
+Index: []
+DELETE 1
+  ecode         edesc          elocation       edate     etime  emax
+0  E001       Concert            Arena A  2024-07-15  10:00:00   500
+1  E002    Conference  Conference Center  2024-07-20  09:30:00   300
+2  E003  Sports Event            Arena A  2024-07-15  15:00:00   800
+3  E004      Festival         Park Plaza  2024-07-25  12:00:00  1000
+4  E005    Exhibition            Arena A  2024-07-05  11:00:00   200
+TASK E
+   tno ecode  sno
+0  102  E002    2
+Spectator already has a ticket for the event
+CONTEXT:  PL/pgSQL function check_existing_ticket() line 9 at RAISE
+
+Empty DataFrame
+Columns: [tno, ecode, sno]
+Index: []
+INSERT 0 1
+   tno ecode  sno
+0  111  E002    3
+TASK F
+SELECT 4
+           elocation       edate  count
+0            Arena A  2024-07-05      1
+1         Park Plaza  2024-07-25      2
+2            Arena A  2024-07-15      4
+3  Conference Center  2024-07-20      4
+TASK G
+SELECT 5
+          edesc  count
+0       Concert      3
+1    Exhibition      1
+2    Conference      4
+3  Sports Event      1
+4      Festival      2
+TASK H
+SELECT 1
+     edesc  count
+0  Concert      3
+TASK I
+SELECT 2
+      sname       edate          elocation     etime       edesc
+0  John Doe  2024-07-15            Arena A  10:00:00     Concert
+1  John Doe  2024-07-20  Conference Center  09:30:00  Conference
+TASK J
+SELECT 1
+   tno       sname ecode ticket_status
+0  105  Jane Smith  E004         Valid
+TASK K
+SELECT 1
+   tno ecode        sname                      cdate  cuser
+0  107  E001  Bob Johnson 2023-12-05 22:34:47.331312  admin
+TASK L
+COMMIT
+'NoneType' object is not iterable
+
+
+Exit program!

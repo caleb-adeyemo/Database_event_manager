@@ -1,0 +1,12 @@
+A#6#Mike Silver#mike.sil@email.com
+B#R100#100M race#Sports Park#2024-07-15#10:00:00#700
+C#6
+D#R100
+E
+F
+G
+H#E001
+I#1
+J#105
+K#E001
+L
